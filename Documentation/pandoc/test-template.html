@@ -1,0 +1,188 @@
+\documentclass[]{}
+\renewcommand*\sfdefault{uop}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{changepage}
+\usepackage{titlesec}
+% \titleformat{hcommandi}[hshapei]{hformati}{hlabeli}{hsepi}{hbeforei}[hafteri]
+\titleformat{\section}
+  {\pagebreak\LARGE\fontfamily{ppl}\selectfont}
+  {} {} {}
+  [\vspace{2.40cm}\titlerule]
+% \titlespacing*{hcommandi}{hlefti}{hbeforesepi}{haftersepi}[hrighti]
+%\titlespacing{\section}{-1cm}{*1}{*1}
+
+\titleformat{\subsection}
+  {\Large\fontfamily{ppl}\selectfont}
+  {} {} {}
+  [\vspace{0.20cm}\titlerule]
+%\titlespacing{\subsection}{-1cm}{*1}{*1}
+
+\titleformat*{\subsubsection}{\large\fontfamily{ppl}\selectfont}
+\usepackage{fixltx2e} % provides \textsubscript
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \usepackage{fontspec}
+  \ifxetex
+    \usepackage{xltxtra,xunicode}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+    \setmainfont{uop}
+    \setsansfont{uop}
+    \setmonofont{BeraMono}
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage[lmargin=2.5cm,rmargin=2cm]{geometry}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Inverse Inc.},
+            pdftitle={},
+            colorlinks=true,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+
+\title{Installation and Configuration Guide}
+\author{Inverse Inc.}
+\date{}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{figure}[htbp]
+\Oldincludegraphics[height=4.20cm]{sogo.png}
+\end{figure}
+
+\begin{flushright}
+\vspace{2in}
+{\fontfamily{ppl}\selectfont \textmd{\Large version 2.0.8}\par}
+\bigskip
+\textsl{\large Installation and Configuration Guide}\\
+\hspace{1.5cm}\hrulefill
+\vfill
+\end{flushright}
+\newpage
+
+Copyright ©  2008- Inverse inc. (<http://inverse.ca/>)
+Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License,
+Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  
+Please refer to <http://www.gnu.org/licenses/fdl-1.2.txt> for the full license.
+
+Version 2.0.8 – 
+
+\bigskip
+\begin{flushright}
+\Oldincludegraphics[height=1.88cm]{inverse.jpg}
+\end{flushright}
+\newpage
+
+
+
+<h1 id="about-this-guide">About this guide</h1>
+<p>This guide will walk you through the installation and configuration of the SOGo solution. It also covers the installation and configuration of Funambol – the middleware used to synchronize mobile devices with SOGo.</p>
+<p>The instructions are based on version <span class="math"><em>S</em><em>O</em><em>G</em><em>O</em><sub><em>V</em></sub><em>E</em><em>R</em><em>S</em><em>I</em><em>O</em><em>N</em></span> of SOGo, and version 10.0 of Funambol.</p>
+<p>The latest version of this guide is available at http://www.sogo.nu/downloads/documentation.html</p>
+<h1 id="introduction">Introduction</h1>
+<p>SOGo is a free and modern scalable groupware server. It offers shared calendars, address books, and emails through your favourite Web browser and by using a native client such as Mozilla Thunderbird and Lightning. SOGo is standard-compliant. It supports CalDAV, CardDAV, GroupDAV, iMIP and iTIP and reuses existing IMAP, SMTP and database servers - making the solution easy to deploy and interoperable with many applications.</p>
+<p>SOGo features :</p>
+<ul>
+<li>Scalable architecture suitable for deployments from dozens to many thousands of users</li>
+<li>Rich Web-based interface that shares the look and feel, the features and the data of Mozilla Thunderbird and Lightning</li>
+<li>Improved integration with Mozilla Thunderbird and Lightning by using the SOGo Connector and the SOGo Integrator</li>
+<li>Two-way synchronization support with any SyncML-capable devices (BlackBerry, Palm, Windows CE, etc.) by using the Funambol SOGo Connector</li>
+</ul>
+<p>SOGo is developed by a community of developers located mainly in North America and Europe. More information can be found at http://sogo.nu/</p>
+<h2 id="architecture">Architecture</h2>
+<p>The following diagram illustrate the SOGo architecture:<br /> <img src="architecture.png" title="SOGo architecture" /></p>
+<p>Standard protocols such as CalDAV, CardDAV, GroupDAV, HTTP, IMAP and SMTP are used to communicate with the SOGo platform or its sub-components. Mobile devices supporting the SyncML standard use the Funambol middleware to synchronize information.</p>
+<p>To install and configure the native Microsoft Outlook compatibility layer, please refer to the SOGo Native Microsoft Outlook Configuration Guide.</p>
+<h1 id="system-requirements">System Requirements</h1>
+<h2 id="assumptions">Assumptions</h2>
+<p>SOGo reuses many components in an infrastructure. Thus, it requires the following:</p>
+<ul>
+<li>Database server (MySQL, PostgreSQL or Oracle)</li>
+<li>LDAP server (OpenLDAP, Novell eDirectory, Microsoft Active Directory and others)</li>
+<li>SMTP server (Postfix, Sendmail and others)</li>
+<li>IMAP server (Courier, Cyrus IMAP Server, Dovecot and others)</li>
+</ul>
+<p>In this guide, we assume that all those components are running on the same server (i.e., <code>localhost</code> or <code>127.0.0.1</code>) that SOGo will be installed on. Good understanding of those underlying components and GNU/Linux is required to install SOGo. If you miss some of those required components, please refer to the appropriate documentation and proceed with the installation and configuration of these requirements before continuing with this guide.</p>
+<h2 id="software-recommendations-more-recent-versions-of-the-software-mentioned-above-can-also-be-used.">Software recommendations: More recent versions of the software mentioned above can also be used.</h2>
+<table>
+<col width="22%" />
+<col width="45%" />
+<tbody>
+<tr class="odd">
+<td align="left">Database server</td>
+<td align="left">PostgreSQL 7.4 or later</td>
+</tr>
+<tr class="even">
+<td align="left">LDAP server</td>
+<td align="left">OpenLDAP 2.3.x or later</td>
+</tr>
+<tr class="odd">
+<td align="left">SMTP server</td>
+<td align="left">Postfix 2.x</td>
+</tr>
+<tr class="even">
+<td align="left">IMAP server</td>
+<td align="left">Cyrus IMAP Server 2.3.x or later<br />Dovecot 2.x or later</td>
+</tr>
+</tbody>
+</table>
+<h2 id="minimum-hardware-requirements">Minimum hardware requirements</h2>
+<table>
+<col width="18%" />
+<col width="81%" />
+<tbody>
+<tr class="odd">
+<td align="left">Server</td>
+<td align="left">Evaluation and testing<br />- Intel, AMD, or PowerPC CPU 1 GHz<br />- 512 MB of RAM (without Funambol, 1 GB RAM otherwise)<br />- 1 GB of disk space<br /></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Production<br />Intel, AMD or PowerPC CPU 3 GHz<br />2048 MB of RAM<br />10 GB of disk space (excluding the mail store)<br /></td>
+</tr>
+<tr class="odd">
+<td align="left">Desktop</td>
+<td align="left">Intel, AMD, or PowerPC CPU 1.5 GHz 1024x768 monitor resolution 512 MB of RAM 128 Kbps or higher network connection</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Microsoft Windows Microsoft Windows XP SP2 or later versions</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Apple Mac OS X Apple Mac OS X 10.2 or later</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Linux Your favourite GNU/Linux distribution</td>
+</tr>
+<tr class="odd">
+<td align="left">Mobile devices</td>
+<td align="left">Any device supporting the CalDAV and CardDAV standards Apple iPhone / iPod / iPad using Apple iOS 3.0 or later</td>
+</tr>
+</tbody>
+</table>
+
+\end{document}

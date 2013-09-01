@@ -5,6 +5,8 @@
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
+\usepackage{enumitem}
+\setlist[description]{style=nextline}
 \usepackage{changepage}
 \usepackage{titlesec}
 % \titleformat{hcommandi}[hshapei]{hformati}{hlabeli}{hsepi}{hbeforei}[hafteri]

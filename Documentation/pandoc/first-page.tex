@@ -1,14 +1,30 @@
+% This is the 2 first pages :
+%   Title page
+%   Copyright and inverse logo
 \thispagestyle{empty}
 \begin{figure}[htbp]
-\includegraphics[height=4.20cm]{sogo.png}
+\Oldincludegraphics[height=4.20cm]{sogo.png}
 \end{figure}
 
 \begin{flushright}
-\vfill
-\textsc{version $SOGO_VERSION$}\\
-\textsc{$title$}\\
+\vspace{2in}
+{\fontfamily{ppl}\selectfont \textmd{\Large version $SOGO_VERSION$}\par}
+\bigskip
+\textsl{\large $title$}\\
 \hspace{1.5cm}\hrulefill
 \vfill
 \end{flushright}
 \newpage
 
+Copyright ©  2008-$YEAR$ Inverse inc. (<http://inverse.ca/>)
+Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License,
+Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  
+Please refer to <http://www.gnu.org/licenses/fdl-1.2.txt> for the full license.
+
+Version $SOGO_VERSION$ – $DATE$
+
+\bigskip
+\begin{flushright}
+\Oldincludegraphics[height=1.88cm]{inverse.jpg}
+\end{flushright}
+\newpage

@@ -30,6 +30,7 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[utf8]{inputenc}
+  \DeclareUnicodeCharacter{00A0}{ }
 $if(euro)$
   \usepackage{eurosym}
 $endif$

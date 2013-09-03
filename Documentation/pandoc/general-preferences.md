@@ -1,5 +1,3 @@
-![](architecture.png "SOGo architecture")
-
 To identify the level in which each parameter can be defined, we use the following abbreviations in the tables of this document :
 
 ----- -----------------------------------------------------------------

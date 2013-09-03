@@ -224,16 +224,3 @@ Each level inherits the preferences of the parent level.
 Therefore, domain preferences define the defaults values of the user preferences, and the system preferences define the default values of all domains preferences.
 Both system and domains preferences are defined in the `/etc/sogo/sogo.conf`, while the users preferences are configurable by the user and stored in SOGo's database.
 
-To identify the level in which each parameter can be defined, we use the following abbreviations in the tables of this document :
-
------ -----------------------------------------------------------------
-**S** Parameter exclusive to the system and not configurable per domain
-**D** Parameter exclusive to a domain and not configurable per user
-**U** Parameter configurable by the user
--------------------------------------------------------------------
-
-Remember that the hierarchy paradigm allows the default value of a parameter to be defined at a parent level.
-
-## General Preferences ##
-
-include=general-preferences.md

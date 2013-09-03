@@ -5,6 +5,7 @@
 
 SOGO_VERSION = 2.0.8
 PANDOC_OPTS = --listings --toc -V SOGO_VERSION=$(SOGO_VERSION) -V fontsize:11pt \
+	            -V toc-depth:3 \
 	            -V geometry:"lmargin=2.5cm,rmargin=2cm,tmargin=2cm,bmargin=2cm" \
 							--template=template.latex 
 

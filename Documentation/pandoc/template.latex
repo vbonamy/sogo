@@ -91,6 +91,7 @@ $if(verbatim-in-note)$
 $endif$
 $if(tables)$
 \usepackage{longtable}
+\usepackage{ctable}
 $endif$
 $if(graphics)$
 \usepackage{graphicx}

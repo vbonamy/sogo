@@ -4,10 +4,11 @@
 
 
 SOGO_VERSION = 2.0.8
-PANDOC_OPTS = --toc -V SOGO_VERSION=$(SOGO_VERSION) -V fontsize:11pt \
+PANDOC_OPTS = --listings --toc -V SOGO_VERSION=$(SOGO_VERSION) -V fontsize:11pt \
 	            -V geometry:"lmargin=2.5cm,rmargin=2cm" --template=template.latex 
+
 userguide.tex: userguide.md
-	pandoc userguide.md $(PANDOC_OPTS) -o userguide.tex
+	TEXMFHOME=`pwd`/texmf pandoc userguide.md general-preferences.md -B first-page.tex  $(PANDOC_OPTS) -o userguide.tex
 
 userguide.pdf: template.latex userguide.md first-page.tex general-preferences.md
 	TEXMFHOME=`pwd`/texmf pandoc userguide.md general-preferences.md -B first-page.tex  $(PANDOC_OPTS) -o userguide.pdf

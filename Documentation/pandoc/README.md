@@ -7,6 +7,7 @@ To build the docs, you'll need:
   - texlive-fonts-recommended
   - texlive-fonts-extra
   
+<!-- -->
 
     apt-get install texlive-latex-extra texlive-latex-recommended texlive-latex-base texlive-fonts-recommended texlive-fonts-extra
     # get pandoc from http://packages.ubuntu.com/saucy/amd64/pandoc/download

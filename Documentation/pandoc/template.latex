@@ -1,14 +1,17 @@
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$]{$documentclass$}
 \renewcommand*\sfdefault{uop}
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
-\IfFileExists{beramono.sty}{\usepackage[scaled=0.80]{beramono}}{}
+
+\usepackage{lmodern}  % this looks ass ugly
 \usepackage[T1]{fontenc}
-%\usepackage{lmodern}  % this looks ass ugly
+\IfFileExists{beramono.sty}{\usepackage[scaled=0.80]{beramono}}{}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{enumitem}
 \setlist[description]{style=nextline}
 \usepackage{changepage}
+\usepackage[usenames,dvipsnames]{color}
+\definecolor{light-gray}{gray}{0.90}
 \usepackage{titlesec}
 % \titleformat{hcommandi}[hshapei]{hformati}{hlabeli}{hsepi}{hbeforei}[hafteri]
 \titleformat{\section}
@@ -71,6 +74,12 @@ $endif$
 $endif$
 $if(listings)$
 \usepackage{listings}
+\lstset{ 
+        basicstyle=\small\ttfamily,
+        frame=single,
+        frameround=tttt,
+        backgroundcolor=\color{light-gray},
+       }
 $endif$
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}

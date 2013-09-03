@@ -4,6 +4,8 @@ To build the docs, you'll need:
   - texlive-latex-extra
   - texlive-latex-recommended
   - texlive-latex-base
+  - texlive-fonts-recommended
+  - texlive-fonts-extra
   
 
-    apt-get install pandoc  texlive-latex-extra texlive-latex-recommended texlive-latex-base
+    apt-get install pandoc  texlive-latex-extra texlive-latex-recommended texlive-latex-base texlive-fonts-recommended texlive-fonts-extra

@@ -183,15 +183,14 @@ This simple format encapsulates four basic data types:
 
   - arrays
 
-    An array is a chain of values starting with "(" and ending with ")", where the values are separated with a ",". 
+    An array is a chain of values starting with "(" and ending with ")", where the values are separated with a ",".\ 
     For example: `bindFields = (mail, uid);`
 
   - dictionaries (or hash tables)
 
     A dictionary is a sequence of key and value pairs separated in their middle with a "=" sign.
     It starts with a "{" and ends with a corresponding "}".  
-    Each value definition in a dictionary ends with a semicolon.
-
+    Each value definition in a dictionary ends with a semicolon.\
     For example:
         
         dict = {
@@ -203,7 +202,7 @@ This simple format encapsulates four basic data types:
 
   - strings
 
-    Quoting strings is not mandatory, but doing so will avoid you many problems.
+    Quoting strings is not mandatory, but doing so will avoid you many problems.\
     Example: `string = "value";`
 
   - numbers
@@ -227,7 +226,6 @@ Both system and domains preferences are defined in the `/etc/sogo/sogo.conf`, wh
 
 To identify the level in which each parameter can be defined, we use the following abbreviations in the tables of this document :
 
-
 ----- -----------------------------------------------------------------
 **S** Parameter exclusive to the system and not configurable per domain
 **D** Parameter exclusive to a domain and not configurable per user
@@ -238,4 +236,4 @@ Remember that the hierarchy paradigm allows the default value of a parameter to 
 
 ## General Preferences ##
 
-
+include=general-preferences.md

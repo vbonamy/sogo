@@ -23,7 +23,7 @@ Remember that the hierarchy paradigm allows the default value of a parameter to 
 
      Defaults to 1 when unset.
 
- **S**  _WOPort_
+**S**  _WOPort_
 :    The TCP port used by the SOGo daemon.
 
      Defaults to 20000 when unset.
@@ -37,6 +37,7 @@ Remember that the hierarchy paradigm allows the default value of a parameter to 
 
 **S**  _WOPidFile_
 :    The file path where the parent process id will be written.
+
      Defaults to /var/run/sogo/sogo.pid.
 
 **S**  _WOWatchDogRequestTimeout_
@@ -347,4 +348,3 @@ Remember that the hierarchy paradigm allows the default value of a parameter to 
 
      Default to 300 (or 5 minutes).
      Note that `SOGoCacheCleanupInterval` must be set to a value equal or higher than `SOGoFailedLoginBlockInterval`.
-

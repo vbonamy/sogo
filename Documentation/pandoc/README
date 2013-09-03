@@ -1,0 +1,9 @@
+To build the docs, you'll need:
+
+  - pandoc
+  - texlive-latex-extra
+  - texlive-latex-recommended
+  - texlive-latex-base
+  
+
+    apt-get install pandoc  texlive-latex-extra texlive-latex-recommended texlive-latex-base

@@ -3,4 +3,5 @@ texmf/texmf-config/*
 texmf/texmf-var/*
 texput.log
 texmf/web2c/updmap.cfg
+texmf/ls-R
 

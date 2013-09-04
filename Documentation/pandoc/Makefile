@@ -29,7 +29,10 @@ userguide.tex: template.latex userguide.md first-page.tex general-preferences.md
 
 userguide.pdf: template.latex userguide.md first-page.tex general-preferences.md
 	rm -rf texmf/texmf-var/*
-	export $(TEXVARS); updmap
+	[ -f /var/lib/texmf/web2c/updmap.cfg ] && \
+	  (install -D /var/lib/texmf/web2c/updmap.cfg  texmf/web2c/updmap.cfg && \
+		echo 'Map bera.map' >>texmf/web2c/updmap.cfg) || echo 'Map bera.map' >texmf/web2c/updmap.cfg
+	export $(TEXVARS); updmap 
 	gpp $(GPP_OPTS) first-page.tex >first-page.tex.done
 	# this "export FOO; commands" is very important.
 	# Otherwise pdflatex won't find the local sty and hell breaks loose

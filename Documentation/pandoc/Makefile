@@ -8,6 +8,9 @@ SOGO_VERSION = 2.0.8
 YEAR=2013
 DATE=$(shell date +%Y-%m-%d)
 TITLE="SOGo Installation and Configuration Guide"
+
+# We do this so that we don't have to manually  setup the tex env
+# before actually building the docs.
 TEXVARS = TEXMFHOME=$(PWD)/texmf TEXMFVAR=$(PWD)/texmf/texmf-var TEXMFCONFIG=$(PWD)/texmf/texmf-config
 
 
@@ -19,16 +22,19 @@ PANDOC_OPTS = --listings --toc -V fontsize:11pt \
 							--template=template.latex 
 
 userguide.tex: template.latex userguide.md first-page.tex general-preferences.md
-	$(TEXVARS) updmap
+	export $(TEXVARS); updmap
 	gpp $(GPP_OPTS) first-page.tex >first-page.tex.done
-	$(TEXVARS) gpp $(GPP_OPTS) userguide.md  |  pandoc $(PANDOC_OPTS) -B first-page.tex.done -o userguide.tex
+	export $(TEXVARS); gpp $(GPP_OPTS) userguide.md  |  pandoc $(PANDOC_OPTS) -B first-page.tex.done -o userguide.tex
 	rm first-page.tex.done
 
 userguide.pdf: template.latex userguide.md first-page.tex general-preferences.md
 	rm -rf texmf/texmf-var/*
-	$(TEXVARS) updmap
+	export $(TEXVARS); updmap
 	gpp $(GPP_OPTS) first-page.tex >first-page.tex.done
-	$(TEXVARS) gpp $(GPP_OPTS) userguide.md  |  pandoc $(PANDOC_OPTS) -B first-page.tex.done -o userguide.pdf
+	# this "export FOO; commands" is very important.
+	# Otherwise pdflatex won't find the local sty and hell breaks loose
+	export $(TEXVARS); gpp $(GPP_OPTS) userguide.md  | \
+	  pandoc $(PANDOC_OPTS) -B first-page.tex.done -o userguide.pdf
 	rm first-page.tex.done
 
 test: template.latex userguide.md first-page.tex general-preferences.md

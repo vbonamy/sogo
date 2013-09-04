@@ -2,7 +2,8 @@
 \renewcommand*\sfdefault{uop}
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
 \usepackage{lmodern}  % must be before beramono
-\IfFileExists{beramono.sty}{\usepackage[scaled=0.80]{beramono}}{}
+%\IfFileExists{beramono.sty}{\usepackage[scaled=0.80]{beramono}}{}
+\usepackage[scaled=0.80]{beramono}
 \usepackage[T1]{fontenc}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}

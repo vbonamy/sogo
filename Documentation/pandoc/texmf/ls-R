@@ -1,11 +1,13 @@
 % ls-R -- filename database for kpathsea; do not change this line.
 ./:
-.:
 doc
 dvips
 fonts
 ls-R
 tex
+texmf-config
+texmf-var
+texput.log
 web2c
 
 ./doc:
@@ -15,8 +17,8 @@ fonts
 bera
 
 ./doc/fonts/bera:
-bera.txt
 LICENSE
+bera.txt
 
 ./dvips:
 config
@@ -153,10 +155,10 @@ bera
 enumitem
 
 ./tex/latex/bera:
+bera.sty
 beramono.sty
 berasans.sty
 beraserif.sty
-bera.sty
 t1fve.fd
 t1fvm.fd
 t1fvs.fd
@@ -166,6 +168,54 @@ ts1fvs.fd
 
 ./tex/latex/enumitem:
 enumitem.sty
+
+./texmf-config:
+
+./texmf-var:
+fonts
+web2c
+
+./texmf-var/fonts:
+map
+
+./texmf-var/fonts/map:
+dvipdfmx
+dvips
+pdftex
+pxdvi
+
+./texmf-var/fonts/map/dvipdfmx:
+updmap
+
+./texmf-var/fonts/map/dvipdfmx/updmap:
+kanjix.map
+
+./texmf-var/fonts/map/dvips:
+updmap
+
+./texmf-var/fonts/map/dvips/updmap:
+builtin35.map
+download35.map
+ps2pk.map
+psfonts.map
+psfonts_pk.map
+psfonts_t1.map
+
+./texmf-var/fonts/map/pdftex:
+updmap
+
+./texmf-var/fonts/map/pdftex/updmap:
+pdftex.map
+pdftex_dl14.map
+pdftex_ndl14.map
+
+./texmf-var/fonts/map/pxdvi:
+updmap
+
+./texmf-var/fonts/map/pxdvi/updmap:
+
+./texmf-var/web2c:
+updmap.log
 
 ./web2c:
 updmap.cfg

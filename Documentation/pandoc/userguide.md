@@ -6,7 +6,7 @@
 This guide will walk you through the installation and configuration of the SOGo solution.
 It also covers the installation and configuration of Funambol – the middleware used to synchronize mobile devices with SOGo.
 
-The instructions are based on version $SOGO_VERSION$ of SOGo, and version 10.0 of Funambol.
+The instructions are based on version \_SOGO_VERSION of SOGo, and version 10.0 of Funambol.
 
 The latest version of this guide is available at http://www.sogo.nu/downloads/documentation.html
 
@@ -224,3 +224,4 @@ Each level inherits the preferences of the parent level.
 Therefore, domain preferences define the defaults values of the user preferences, and the system preferences define the default values of all domains preferences.
 Both system and domains preferences are defined in the `/etc/sogo/sogo.conf`, while the users preferences are configurable by the user and stored in SOGo's database.
 
+\include{general-preferences.md}

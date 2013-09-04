@@ -1,0 +1,5 @@
+# updmap stuff
+texmf/texmf-config/*
+texmf/texmf-var/*
+texput.log
+

@@ -116,8 +116,8 @@
         };
         save = {
           protectedBy = "Change Permissions";
-          actionClass = "UIxContactFolderActions";
-          actionName  = "save";
+          actionClass = "UIxFolderActions";
+          actionName  = "renameFolder";
         };
         userRights = {
           protectedBy = "ReadAcls";
@@ -149,7 +149,7 @@
           pageName    = "UIxContactEditor";
           actionName  = "new";
         };
-        renameFolder = {
+        save = {
           protectedBy = "Change Permissions";
           actionClass = "UIxFolderActions";
           actionName  = "renameFolder";
@@ -263,6 +263,7 @@
         view = {
           protectedBy = "Access Contents Information";
           pageName    = "UIxContactView";
+          actionName  = "data";
         };
         edit = {
           protectedBy = "Access Contents Information";

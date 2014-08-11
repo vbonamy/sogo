@@ -63,12 +63,13 @@ SOGo_HEADER_FILES = \
 	SOGoGroup.h			\
 	SOGoUser.h			\
 	\
+	CardElement+SOGo.h		\
 	DOMNode+SOGo.h			\
 	\
 	WORequest+SOGo.h		\
 	WOResourceManager+SOGo.h	\
 	WOResponse+SOGo.h		\
-	WOContext+SOGo.h	\
+	WOContext+SOGo.h		\
 	\
 	SOGoCredentialsFile.h
 
@@ -77,7 +78,7 @@ all::
 	@touch SOGoBuild.m
 
 SOGo_OBJC_FILES = \
-	SOGoBuild.m \
+	SOGoBuild.m			\
 	SOGoProductLoader.m		\
 	\
 	SOGoCache.m			\
@@ -135,12 +136,13 @@ SOGo_OBJC_FILES = \
 	SOGoGroup.m			\
 	SOGoUser.m			\
 	\
+	CardElement+SOGo.m		\
 	DOMNode+SOGo.m			\
 	\
 	WORequest+SOGo.m		\
 	WOResourceManager+SOGo.m	\
 	WOResponse+SOGo.m		\
-	WOContext+SOGo.m	\
+	WOContext+SOGo.m		\
 	\
 	SOGoCredentialsFile.m
 

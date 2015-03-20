@@ -11,32 +11,6 @@
     title="title"
     const:jsFiles="Common/resource.js,Mailer/mailbox-model.js,Mailer/message-model.js,Preferences/preferences-model.js">
 
-  <!-- <md-content md-scroll-y="true"> -->
-
-  <!--
-      <div id="mainMenu">
-      <ul>
-      <li ng-class="{_selected: $state.is('general')}" ui-sref="general">
-      <i class="icon-cog"> </i><var:string label:value="General" /></li>
-      <var:if condition="userHasCalendarAccess">
-      <li ng-class="{_selected: state.is('calendars')}" ui-sref="calendars">
-      <i class="icon-calendar2"> </i><var:string label:value="Calendars" /></li>
-      </var:if>
-      <li ng-class="{_selected: state.is('addressbooks')}" ui-sref="addressbooks">
-      <i class="icon-address-book"> </i><var:string label:value="Address Book" /></li>
-      <var:if condition="userHasMailAccess">
-      <li ng-class="{_selected: state.is('mailer')}" ui-sref="mailer">
-      <i class="icon-mail3"> </i><var:string label:value="Mailer" /></li>
-      </var:if>
-      </ul>
-      </div>
-  -->
-  
-  <!--
-      <div id="container">
-      <div id="viewer" ui-view="preferences"> </div>
-      </div>
-  -->
   <main class="view md-layout-fill" ui-view="preferences" layout="row"
         ng-controller="navController"><!-- preferences --> </main>
 
@@ -534,10 +508,10 @@
         <md-tabs class="md-accent">
 
           <!-- CONTACT > GENERAL -->
-          <md-tab id="contactsGeneralTab"
+          <!-- <md-tab id="contactsGeneralTab"
                   aria-controls="contactsGeneralTab-content" label:label="General">
             GENERAL
-          </md-tab>
+          </md-tab> -->
            <!-- END OF CONTACT > GENERAL -->
           
           <!-- CONTACT > CATEGORIES -->

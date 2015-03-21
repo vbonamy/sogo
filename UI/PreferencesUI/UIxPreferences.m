@@ -1,6 +1,6 @@
 /* UIxPreferences.m - this file is part of SOGo
  *
- * Copyright (C) 2007-2014 Inverse inc.
+ * Copyright (C) 2007-2015 Inverse inc.
  *
  * This file is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,14 +57,6 @@
 #import <Contacts/SOGoContactGCSFolder.h>
 
 #import "UIxPreferences.h"
-
-#warning this class is not finished
-/* remaining:
-   default event length
-   default snooze length
-   refresh calendar every X minutes
-   workweek = from -> to
-   identities */
 
 static NSArray *reminderItems = nil;
 static NSArray *reminderValues = nil;
@@ -1846,7 +1838,24 @@ static NSArray *reminderValues = nil;
 
 - (id <WOActionResults>) saveAction
 {
-  //return [self responseWithStatus: 200 andJSONRepresentation: data];
+  SOGoUser *user;
+  id o, v;
+  
+  o = [[[context request] contentAsString] objectFromJSONString];
+  user = [[self context] activeUser];
+
+  if ((v = [o objectForKey: @"defaults"]))
+    {
+      [[[user userDefaults] source] setValues: v];
+      [[user userDefaults] synchronize];
+    }
+  
+  if ((v = [o objectForKey: @"settings"]))
+    {
+      [[[user userSettings] source] setValues: v];
+      [[user userSettings] synchronize];
+    }
+    
   return [self responseWithStatus: 200];
 }
 

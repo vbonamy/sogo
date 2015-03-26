@@ -1705,7 +1705,12 @@ static NSArray *reminderValues = nil;
   return [[user domainDefaults] mailAuxiliaryUserAccountsEnabled];
 }
 
+//
+// Used internally
+//
 - (void) _extractMainIdentity: (NSDictionary *) identity
+                 inDictionary: (NSMutableDictionary *) target
+  
 {
   /* We perform some validation here as we have no guaranty on the input
      validity. */
@@ -1714,9 +1719,11 @@ static NSArray *reminderValues = nil;
   if ([identity isKindOfClass: [NSDictionary class]])
     {
       value = [identity objectForKey: @"signature"];
-      if (!value)
-        value = @"";
-      [userDefaults setMailSignature: value];
+
+      if (value)
+        [target setObject: value  forKey: @"SOGoMailSignature"];
+      else
+        [target removeObjectForKey: @"SOGoMailSignature"];
 
       if (mailCustomFromEnabled)
         {
@@ -1728,22 +1735,37 @@ static NSArray *reminderValues = nil;
           if ([value length] == 0
               || [[user allEmails] containsObject: value])
             value = nil;
-          [userDefaults setMailCustomEmail: value];
 
+          if (value)
+            [target setObject: value  forKey: @"SOGoMailCustomEmail"];
+          else
+            [target removeObjectForKey: @"SOGoMailCustomEmail"];
+        
           value = [[identity objectForKey: @"fullName"]
                     stringByTrimmingSpaces];
           if ([value length] == 0
               || [[user cn] isEqualToString: value])
             value = nil;
-          [userDefaults setMailCustomFullName: value];
+
+          if (value)
+            [target setObject: value  forKey: @"SOGoMailCustomFullName"];
+          else
+            [target removeObjectForKey: @"SOGoMailCustomFullName"];
         }
 
       value = [[identity objectForKey: @"replyTo"]
                 stringByTrimmingSpaces];
-      [userDefaults setMailReplyTo: value];
+
+      if (value && [value length] > 0)
+        [target setObject: value  forKey: @"SOGoMailReplyTo"];
+      else
+        [target removeObjectForKey: @"SOGoMailReplyTo"];
     }
 }
 
+//
+// Used internally
+//
 - (BOOL) _validateReceiptAction: (NSString *) action
 {
   return ([action isKindOfClass: [NSString class]]
@@ -1752,7 +1774,12 @@ static NSArray *reminderValues = nil;
               || [action isEqualToString: @"ask"]));
 }
 
+//
+// Used internally
+//
 - (void) _extractMainReceiptsPreferences: (NSDictionary *) receipts
+                            inDictionary: (NSMutableDictionary *) target
+
 {
   /* We perform some validation here as we have no guaranty on the input
      validity. */
@@ -1761,31 +1788,39 @@ static NSArray *reminderValues = nil;
   if ([receipts isKindOfClass: [NSDictionary class]])
     {
       action = [receipts objectForKey: @"receiptAction"];
-      [userDefaults
-        setAllowUserReceipt: [action isEqualToString: @"allow"]];
+      [target setObject: @"1" forKey: @"SOGoMailReceiptAllow"];
 
       action = [receipts objectForKey: @"receiptNonRecipientAction"];
       if ([self _validateReceiptAction: action])
-        [userDefaults setUserReceiptNonRecipientAction: action];
-
+        [target setObject: action  forKey: @"SOGoMailReceiptNonRecipientAction"];
+      
       action = [receipts objectForKey: @"receiptOutsideDomainAction"];
       if ([self _validateReceiptAction: action])
-        [userDefaults setUserReceiptOutsideDomainAction: action];
-
+        [target setObject: action  forKey: @"SOGoMailReceiptOutsideDomainAction"];
+      
       action = [receipts objectForKey: @"receiptAnyAction"];
       if ([self _validateReceiptAction: action])
-        [userDefaults setUserReceiptAnyAction: action];
+        [target setObject: action  forKey: @"SOGoMailReceiptAnyAction"];
     }
 }
 
+//
+// Used internally
+//
 - (void) _extractMainCustomFrom: (NSDictionary *) account
 {
 }
 
+//
+// Used internally
+//
 - (void) _extractMainReplyTo: (NSDictionary *) account
 {
 }
 
+//
+// Used internally
+//
 - (BOOL) _validateAccountIdentities: (NSArray *) identities
 {
   static NSString *identityKeys[] = { @"fullName", @"email", nil };
@@ -1839,6 +1874,9 @@ static NSArray *reminderValues = nil;
   return valid;
 }
 
+//
+// Used internally
+//
 - (BOOL) _validateAccount: (NSDictionary *) account
 {
   static NSString *accountKeys[] = { @"name", @"serverName", @"userName",
@@ -1893,7 +1931,11 @@ static NSArray *reminderValues = nil;
   return valid;
 }
 
+//
+// Used internally
+//
 - (void) _extractMainAccountSettings: (NSDictionary *) account
+                        inDictionary: (NSMutableDictionary *) target
 {
   NSArray *identities;
 
@@ -1902,12 +1944,15 @@ static NSArray *reminderValues = nil;
       identities = [account objectForKey: @"identities"];
       if ([identities isKindOfClass: [NSArray class]]
           && [identities count] > 0)
-        [self _extractMainIdentity: [identities objectAtIndex: 0]];
-      [self _extractMainReceiptsPreferences: [account objectForKey: @"receipts"]];
+        [self _extractMainIdentity: [identities objectAtIndex: 0]  inDictionary: target];
+      [self _extractMainReceiptsPreferences: [account objectForKey: @"receipts"]  inDictionary: target];
     }
 }
 
-- (void) _extractAuxiliaryAccounts: (NSArray *) accounts
+//
+// Used internally
+//
+- (NSArray *) _extractAuxiliaryAccounts: (NSArray *) accounts
 {
   int count, max, oldMax;
   NSArray *oldAccounts;
@@ -1943,7 +1988,7 @@ static NSArray *reminderValues = nil;
         }
     }
 
-  [userDefaults setAuxiliaryMailAccounts: auxAccounts];
+  return auxAccounts;
 }
 
 // - (void) setMailAccounts: (NSString *) newMailAccounts
@@ -1986,6 +2031,9 @@ static NSArray *reminderValues = nil;
   return (mailCustomFromEnabled ? @"true" : @"false");
 }
 
+//
+//
+//
 - (id <WOActionResults>) saveAction
 {
   id o, v;
@@ -1996,8 +2044,8 @@ static NSArray *reminderValues = nil;
   if ((v = [o objectForKey: @"defaults"]))
     {
       NSMutableDictionary *sanitizedLabels;
+      NSArray *allKeys, *accounts;
       NSDictionary *newLabels;
-      NSArray *allKeys;
       NSString *name;
       int i;
 
@@ -2027,6 +2075,22 @@ static NSArray *reminderValues = nil;
           [v setObject: sanitizedLabels  forKey: @"SOGoMailLabelsColors"];
         }
       
+      // We sanitize our auxilary mail accounts
+      accounts = [v objectForKey: @"AuxiliaryMailAccounts"];
+      if (accounts && [accounts isKindOfClass: [NSArray class]])
+        {
+          if ([accounts count] > 0)
+            {
+              [self _extractMainAccountSettings: [accounts objectAtIndex: 0]  inDictionary: v];
+              if ([self mailAuxiliaryUserAccountsEnabled])
+                accounts = [self _extractAuxiliaryAccounts: accounts];
+              else
+                accounts = [NSArray array];
+
+              [v setObject: accounts  forKey: @"AuxiliaryMailAccounts"];
+            }
+        }
+
       [[[user userDefaults] source] setValues: v];
       [[user userDefaults] synchronize];
     }

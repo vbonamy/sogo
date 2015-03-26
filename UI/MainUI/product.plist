@@ -206,6 +206,11 @@
           pageName = "SOGoUserHomePage";
           actionName = "foldersSearch";
         };
+        date = {
+          protectedBy = "View";
+          pageName = "SOGoUserHomePage";
+          actionName = "date";
+        }
       };
     };
     //     SOGoGroupsFolder = {

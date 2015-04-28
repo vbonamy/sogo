@@ -77,11 +77,11 @@
     <script type="text/ng-template" id="generalPreferences.html">
 
       <md-content layout="row" class="md-flex">
-        <md-tabs class="md-accent">
+        <md-tabs md-dynamic-height="true">
 
           <!-- GENERAL OPTIONS -->
           <md-tab id="generalOptionsView" aria-controls="generalOptionsView-content" label:label="General">
-            <div role="tabpanel" aria-labelledby="generalOptionsView" id="generalOptionsView-content">
+            <div aria-labelledby="generalOptionsView" id="generalOptionsView-content">
               <div layout="row" layout-align="space-around center">
                 <div><var:string label:value="SOGo Version :"/></div>
                 <div><var:string value="sogoVersion"/></div>
@@ -229,7 +229,7 @@
     -->
     <script type="text/ng-template" id="calendarsPreferences.html">
       <md-content layout="row" class="md-flex">
-        <md-tabs class="md-accent">
+        <md-tabs md-dynamic-height="true">
           
           <!-- CALENDAR - GENERAL -->
           <md-tab id="calendarOptionsView"
@@ -469,7 +469,7 @@
     -->
     <script type="text/ng-template" id="addressbooksPreferences.html">
       <md-content layout="row" class="md-flex">
-        <md-tabs class="md-accent">
+        <md-tabs md-dynamic-height="true">
 
           <!-- CONTACT > GENERAL -->
           <!-- <md-tab id="contactsGeneralTab"
@@ -518,7 +518,7 @@
     <script type="text/ng-template" id="mailerPreferences.html">
       <var:if condition="userHasMailAccess">
         <md-content layout="row" class="md-flex">
-          <md-tabs class="md-accent">
+          <md-tabs md-dynamic-height="true">
             
             <!-- MAIL > GENERAL -->
             <md-tab id="mailGeneralTab" aria-controls="mailGeneralTab-content" label:label="General">

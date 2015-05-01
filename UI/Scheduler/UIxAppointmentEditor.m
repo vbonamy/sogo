@@ -317,6 +317,7 @@
   SOGoAppointmentObject *co;
   SoSecurityManager *sm;
   WORequest *request;
+  unsigned int httpStatus;
 
   event = [self event];
   co = [self clientObject];
@@ -386,16 +387,21 @@
     }
 
   if (ex)
-    jsonResponse = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   @"failure", @"status",
-                                 [ex reason],
-                                 @"message",
-                                 nil];
+    {
+      httpStatus = 500;
+      jsonResponse = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"failure", @"status",
+                                   [ex reason], @"message",
+                                   nil];
+    }
   else
-    jsonResponse = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   @"success", @"status", nil];
+    {
+      httpStatus = 200;
+      jsonResponse = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"success", @"status", nil];
+    }
 
-  return [self responseWithStatus: 200
+  return [self responseWithStatus: httpStatus
             andJSONRepresentation: jsonResponse];
 }
 

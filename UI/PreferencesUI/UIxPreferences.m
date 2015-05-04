@@ -2123,8 +2123,9 @@ static NSArray *reminderValues = nil;
                            andJSONRepresentation: [NSDictionary dictionaryWithObjectsAndKeys: @"Connection error", @"textStatus", nil]]; 
                 }
             }
-          results = [self responseWithStatus: 503
-                       andJSONRepresentation: [NSDictionary dictionaryWithObjectsAndKeys: @"Service temporarily unavailable", @"textStatus", nil]];
+          else
+            results = [self responseWithStatus: 503
+                         andJSONRepresentation: [NSDictionary dictionaryWithObjectsAndKeys: @"Service temporarily unavailable", @"textStatus", nil]];
         }
     }
   

@@ -546,10 +546,23 @@ static NSArray *reminderValues = nil;
 - (void) setAttributes: (NSDictionary *) data
 {
   NSCalendarDate *now;
+  SOGoAppointmentFolders *folders;
+  id destinationCalendar;
 
   now = [NSCalendarDate calendarDate];
 
   [component setAttributes: data inContext: context];
+
+  destinationCalendar = [data objectForKey: @"destinationCalendar"];
+  if ([destinationCalendar isKindOfClass: [NSString class]])
+    {
+      folders = [[context activeUser] calendarsFolderInContext: context];
+      componentCalendar = [folders lookupName: [destinationCalendar stringValue]
+                                    inContext: context
+                                      acquire: 0];
+      [componentCalendar retain];
+
+    }
 
   [self _handleOrganizer];
 
